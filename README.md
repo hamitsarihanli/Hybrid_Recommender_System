@@ -1,1 +1,1 @@
-# Hyrib_Recommender_System
+# Hybrid_Recommender_System
