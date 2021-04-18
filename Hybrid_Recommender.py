@@ -5,7 +5,7 @@ movie = pd.read_csv('D:/DSMLBC4/Dersler/Hafta_10/movie.csv')
 movie.head()
 rating = pd.read_csv('D:/DSMLBC4/Dersler/Hafta_10/rating.csv')
 rating.head()
-df = movie.merge(rating, how="left", on="movieId") # movie ve verilen puanlari birlestirdik.
+df = movie.merge(rating, how="left", on="movieId")
 df.head()
 df.shape
 rating.shape
@@ -17,10 +17,10 @@ movie.shape
 
 
 def create_user_movie_df():
-    df['title'] = df.title.str.replace('(\(\d\d\d\d\))', '') #yili boslukla degistir
-    df['title'] = df['title'].apply(lambda x: x.strip()) #bosluklari sil
+    df['title'] = df.title.str.replace('(\(\d\d\d\d\))', '') 
+    df['title'] = df['title'].apply(lambda x: x.strip())
     a = pd.DataFrame(df["title"].value_counts())
-    rare_movies = a[a["title"] <= 1000].index #1000'den az yorum alan filmleri filtrele
+    rare_movies = a[a["title"] <= 1000].index 
     common_movies = df[~df["title"].isin(rare_movies)]
     user_movie_df = common_movies.pivot_table(index=["userId"], columns=["title"], values="rating")
     return user_movie_df
